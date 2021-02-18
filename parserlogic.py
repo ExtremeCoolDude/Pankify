@@ -10,12 +10,13 @@ import chess.pgn
 from chess.pgn import *
 
 
-
+'''
 
 class MyGameBuilder(GameBuilder):
     def visit_header(self, tagname: str, tagvalue: str) -> None:
         self.found_headers = True
         pass
+'''
 class MyStringExporter(chess.pgn.StringExporter):
     def visit_comment(self, comment):
         if self.comments and (self.variations or not self.variation_depth):
