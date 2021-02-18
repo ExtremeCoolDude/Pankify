@@ -11,13 +11,17 @@ from chess.pgn import *
 
 
 
-'''
+
 class MyGameBuilder(GameBuilder):
     def visit_header(self, tagname: str, tagvalue: str) -> None:
         self.found_headers = True
         pass
-
-'''    
+class MyStringExporter(chess.pgn.StringExporter):
+    def visit_comment(self, comment):
+        if self.comments and (self.variations or not self.variation_depth):
+            self.write_token("{ " + comment.replace('\n',"").replace("}", "")+ " } ")
+            self.force_movenumber = True
+    
 with open("temp1.pankify",'r') as olala:
     lokation1 = olala.readline()
     lokation1 = Path(lokation1)
@@ -51,12 +55,12 @@ with open(lokation1, 'r', encoding="utf-8") as work_dis:
 
 
 print("its working!")
-
+'''
 a = game_list[99]
 board = a.board()
 print(a. headers)
         
-'''
+''''''
 print(len(game_list))
 print(type(game_list[0]))
 gametest = game_list[0]
